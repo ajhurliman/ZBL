@@ -1,0 +1,39 @@
+{
+  "name": "ZBL",
+  "version": "0.0.1",
+  "description": "Zapp Bug Logger",
+  "main": "index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "grunt test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajhurliman/ZBL.git"
+  },
+  "author": "ajHurliman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajhurliman/ZBL/issues"
+  },
+  "homepage": "https://github.com/ajhurliman/ZBL",
+  "devDependencies": {
+    "debowerify": "^1.2.0",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.2.1",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-karma": "^0.9.0",
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.28",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "^0.3.2",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
+}
