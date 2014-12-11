@@ -4,6 +4,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.initConfig({
     jshint: {
@@ -54,10 +56,41 @@ module.exports = function(grunt) {
         singleRun: true,
         browsers: ['PhantomJS']
       }
+    },
+
+    sass: {
+      dev: {
+        options: {
+          style: 'expanded',
+          compass: false
+        },
+        files: {
+          'build/css/style.scss':'<%= project.scss %>'
+        }
+      }
+    },
+
+    watch: {
+      // sass: {
+      //   files: 'app/sass/**/*.scss',
+      //   tasks: ['sass:dev']
+      // },
+      app: {
+        files: [ 'app/js/**/*.js' ],
+        tasks: [ 'build' ]
+      },
+      html: {
+        files: [ 'app/**/*.html' ],
+        tasks: [ 'copy' ]
+      }
+      // test: {
+      //   files: [ '<%= project.alljs %>', 'test/front-end/**/*.js'],
+      //   tasks: [ 'build:dev', 'browserify:frontEndTest', 'karma:unit']
+      // }
     }
   });
 
   grunt.registerTask('test', ['jshint', 'simplemocha']);
   grunt.registerTask('test:client', ['browserify:test', 'karma:unit']);
-  grunt.registerTask('build', ['jshint', 'clean', 'browserify', 'copy:dev']);
+  grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'copy:dev']);
 };
