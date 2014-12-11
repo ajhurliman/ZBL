@@ -10,5 +10,5 @@
   "quotmark": true,
   "undef": true,
   "unused": true,
-  "predef": ["angular"]
+  "predef": ["angular", "module", "Firebase"]
 }

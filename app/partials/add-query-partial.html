@@ -1,11 +1,11 @@
 <container>
-<form class="form-inline" role="form">
+<form ng-submit="saveProduct()" class="form-inline" role="form">
   <div class="form-group">
     <div class="input-group">
       <label class="sr-only" for="enterASIN">Enter ASIN</label>
-      <input type="ASIN" class="form-control" id="exampleInputEmail2" placeholder="Enter ASIN">
+      <input ng-model="newAsin" type="ASIN" class="form-control" id="exampleInputEmail2" placeholder="Enter ASIN">
     </div>
   </div>
   <button type="submit" class="btn btn-primary">Add Query</button>
 </form>
-{{$scope.testvariable}}
+
