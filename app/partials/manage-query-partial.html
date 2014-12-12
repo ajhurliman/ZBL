@@ -8,15 +8,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="query in queries">
+    <tr ng-repeat="query in queries track by query.$id">
       <td>{{query.asin}}</td>
       <td>{{query.title}}</td>
       <td>
-        <button ng-click="deleteQuery(query)" class="btn-small btn-danger">Delete</button>
+        <button ng-click="queries.$remove(query.$id)" class="btn-small btn-danger">Delete</button>
         <button class="btn-small btn-success">Export .xls</button>
         <button class="btn-small btn-primary">View</button>
       </td> <!-- TODO: FIX LINK -->
-      <td><input ng-model="query.paused" ng-change="queries.$save(query.$id)" type="checkbox"></td>
+      <td><input ng-model="query.paused" type="checkbox"></td>
     </tr>
   </tbody>
 </table>

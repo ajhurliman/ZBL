@@ -24,8 +24,9 @@ module.exports = function(controllers) {
     var syncObject = sync.$asObject();
     syncObject.$bindTo($scope, 'queries');
 
-    $scope.deleteQuery = function(queryToDelete) {
-      syncObject.$remove(queryToDelete.$id);
+    $scope.queries = $firebase(ref);
+    $scope.deleteQuery = function(id) {
+      $scope.queries.remove(id);
     };
 
     }]);
