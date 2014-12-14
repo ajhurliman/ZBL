@@ -17,25 +17,25 @@ var newSig = makeSignature('B002KT3XQM', 'GetMatchingProductForASIN')
 //var results = makeRequest('B002KT3XQM', 'GetMatchingProductForASIN', newSig);
 
 function makeRequest(asin, action, signature) {
-  // jquery.ajax({
-  //   type: "POST",
-  //   url: "mws.amazonservices.com/",
-  //   data: { ASIN: asin,
-  //    AWSAccessKeyId: "AKIAIECD26LOT4AZEBUQ",
-  //    Action: action,
-  //    //MWSAuthToken: authToken,
-  //    MarketplaceId: "ATVPDKIKX0DER",
-  //    SellerId: "AY3Y67GVNGKA6",
-  //    SignatureMethod: "HmacSHA256",
-  //    SignatureVersion: "2",
-  //    Timestamp: timeCanonical,
-  //    Version: "2011-10-01",
-  //    Signature: signature
-  //   }
-  // })
-  //   .done(function( msg ) {
-  //     alert( "Data Saved: " + msg );
-  //   });
+  jquery.ajax({
+    type: "POST",
+    url: "mws.amazonservices.com/",
+    data: { ASIN: asin,
+     AWSAccessKeyId: "AKIAIECD26LOT4AZEBUQ",
+     Action: action,
+     //MWSAuthToken: authToken,
+     MarketplaceId: "ATVPDKIKX0DER",
+     SellerId: "AY3Y67GVNGKA6",
+     SignatureMethod: "HmacSHA256",
+     SignatureVersion: "2",
+     Timestamp: timeCanonical,
+     Version: "2011-10-01",
+     Signature: signature
+    }
+  })
+    .done(function( msg ) {
+      alert( "Data Saved: " + msg );
+    });
 }
 
 //module.exports = function() {
