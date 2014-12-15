@@ -6,7 +6,7 @@ var jquery = require('jquery');
 
 //set variables
 //var authToken = process.env.AUTH_TOKEN ||
-var accessKey = process.env.ACCESS_KEY || 'AKIAIECD26LOT4AZEBUQ';
+var accessKey = process.env.ACCESS_KEY;
 
 //make request date
 var timeNow = moment().format();
