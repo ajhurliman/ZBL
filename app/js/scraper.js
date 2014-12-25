@@ -2,13 +2,21 @@ var $ = require('jquery');
 var jQuery = $;
 var request = require('request');
 var cheerio = require('cheerio');
+var fs = require('fs');
 
 var url = 'http://www.amazon.com/The-ZappBug-Heater-Kills-100%25/dp/B00F6EV306/';
 
 request(url, function(err, resp, body) {
   if (err)
     throw err;
-  resultsDom = cheerio.load(body); //setup the DOM
+  resultsDom = cheerio.load(body, {
+    normalizeWhitespace: true
+  }); //setup the DOM
+
+  fs.writeFile('body.txt', resultsDom('body').text(), function (err) {
+    if (err) throw err;
+    console.log('It\'s saved!');
+  });
 
   var rating = resultsDom('#averageCustomerReviewRating').text().split(' ');
   rating = rating[0];
@@ -28,8 +36,9 @@ request(url, function(err, resp, body) {
   console.log("Category: " + category);
 
   //TODO: fix this feature
-  // var qty = resultsDom('.a-color-success').text();
-  // console.log("qty: " + qty);
+  var qty = resultsDom('.a-color-success').text();
+  // qty.replace(/\s/g, '');
+  console.log('"' + qty + '"');
 
   var numReviews = resultsDom('#averageCustomerReviewCount a').text().split(' ');
   numReviews = numReviews.shift();
