@@ -51,19 +51,19 @@ module.exports = function(controllers) {
       }
       $http.get(querySet.apiUrl)
       .success(function(data, status, headers, config) {
-        console.log('return data');
-        console.dir(data);
         var results = data.results.collection1[0];
         for (var prop in results) {
           newPoint[prop] = results[prop];
         }
-      });
-      $http.post('/api/newQueryPoint', newPoint)
-      .success(function(data, status, headers, config) {
-        console.log('success: ' + data);
-      })
-      .error(function(data, status, headers, config) {
-        console.log('fail: ' + data);
+
+        $http.post('/api/newQueryPoint', newPoint)
+        .success(function(data, status, headers, config) {
+          console.log('success: \n');
+          console.dir(data);
+        })
+        .error(function(data, status, headers, config) {
+          console.log('fail: ' + data);
+        });
       });
     }
 
