@@ -2,6 +2,7 @@
 
 var QuerySet = require('./models/querySet.js');
 var QueryPoint = require('./models/queryPoint.js');
+var async = require('async');
 
 module.exports = function(app, mongoose) {
 
@@ -22,22 +23,22 @@ module.exports = function(app, mongoose) {
   //pre: dataPoints sent in on req.body
   //post: a new QueryPoint is pushed into its respective parents' array
   app.post('/api/newQueryPoint', function(req, res) {
-    //create queryPoint
     var newQueryPoint = new QueryPoint();
-    for (var prop in req.body) {
-      newQueryPoint[prop] = req.body[prop];
-    }
-    console.log('req.body: \n');
-    console.dir(req.body);
-    console.log('\n \n newQueryPoint: \n');
-    console.dir(newQueryPoint);
+    async.series([
+      function assignProps() {
+        for (var prop in req.body) {
+          newQueryPoint[prop] = req.body[prop];
+          console.dir(newQueryPoint);
+        }
+      },
 
-
-    //save queryPoint to db
-    newQueryPoint.save(function(err, data) {
-      if (err) return res.status(500).send('error saving query point to database');
-      return res.json(data);
-    });
+      function saveItem() {
+        newQueryPoint.save(function(err, data) {
+          if (err) return res.status(500).send('error saving query point to database');
+          return res.json(data);
+        });
+      }
+    ]);
   });
 
   //get a list of all query sets
