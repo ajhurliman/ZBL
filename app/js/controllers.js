@@ -74,9 +74,8 @@ module.exports = function(controllers) {
     //manage acct contents
   });
 
-  controllers.controller('PreviewController', ['$scope', '$route', 'ViewFactory', function($scope, $route, ViewFactory) {
+  controllers.controller('PreviewController', ['$scope', 'ViewFactory', function($scope, ViewFactory) {
     //manage preview
     $scope.queryPoints = ViewFactory.getQueryPoints();
-    $route.reload();
   }]);
 };
