@@ -55,7 +55,10 @@ module.exports = function(controllers) {
         console.dir(data);
         var results = data.results.collection1[0];
         for (var prop in results) {
+          console.log('prop: ' + prop)
           newPoint[prop] = results[prop];
+          console.log('newPoint: \n');
+          console.dir(newPoint);
         }
       });
 
