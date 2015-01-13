@@ -84,7 +84,7 @@ module.exports = function(controllers) {
       .success(function(data, status, headers, config) {
         console.log('return data');
         console.dir(data);
-        var results = data.results.collection[0];
+        var results = data.results.collection1[0];
         for (var prop in results) {
           newPoint[prop] = results[prop];
         }
