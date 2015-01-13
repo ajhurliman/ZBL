@@ -1,22 +1,21 @@
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>ASIN</th>
-      <th>Title</th>
+      <th>URL</th>
+      <th>Name</th>
       <th>Actions</th>
-      <th>Paused</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="query in queries track by query">
-      <td>{{query.asin}}</td>
-      <td>{{query.title}}</td>
+    <tr ng-repeat="query in queries">
+      <td><a href={{query.apiUrl}}>{{query.apiUrl}}</a></td>
+      <td>{{query.name}}</td>
       <td>
-        <button ng-click="queries.$remove(query.$id)" class="btn-small btn-danger">Delete</button>
+        <button ng-click="deleteQuery(query._id)" class="btn-small btn-danger">Delete</button>
         <button class="btn-small btn-success">Export .xls</button>
-        <button class="btn-small btn-primary">View</button>
-      </td> <!-- TODO: FIX LINK -->
-      <td><input ng-model="query.paused" type="checkbox"></td>
+        <button ng-click="viewQuery(query._id)" class="btn-small btn-primary">View</button>
+        <button ng-click="addPoint(query)" class="btn-small btn-primary">Add Point</button>
+      </td>
     </tr>
   </tbody>
 </table>

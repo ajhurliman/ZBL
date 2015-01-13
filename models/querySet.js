@@ -3,7 +3,8 @@
 var mongoose = require('mongoose');
 
 var querySetSchema = mongoose.Schema({
-  asin: String,
-  durationInDays: Number,
-  frequencyInHrs: Number
+  apiUrl: String,
+  name: String
 });
+
+module.exports = mongoose.model('QuerySet', querySetSchema);

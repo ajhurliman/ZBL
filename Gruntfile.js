@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
   grunt.initConfig({
     jshint: {
@@ -87,10 +88,14 @@ module.exports = function(grunt) {
       //   files: [ '<%= project.alljs %>', 'test/front-end/**/*.js'],
       //   tasks: [ 'build:dev', 'browserify:frontEndTest', 'karma:unit']
       // }
+    },
+
+    simplemocha: {
+      src: ['./test/api/*.js']
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('test:api', ['simplemocha']);
   grunt.registerTask('test:client', ['browserify:test', 'karma:unit']);
-  grunt.registerTask('build', ['jshint', 'clean', 'browserify:dev', 'copy:dev']);
+  grunt.registerTask('build', ['clean', 'browserify:dev', 'copy:dev']);
 };
