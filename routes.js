@@ -24,14 +24,14 @@ module.exports = function(app, mongoose) {
   app.post('/api/newQueryPoint', function(req, res) {
     //create queryPoint
     var newQueryPoint = new QueryPoint();
-    newQueryPoint.querySetId = req.body.querySetId;
-    newQueryPoint.creation = new Date();
-    newQueryPoint.salesRank = req.body.salesRank;
-    newQueryPoint.category = req.body.category;
-    newQueryPoint.qtyInStock = req.body.qtyInStock;
-    newQueryPoint.numReviews = req.body.numReviews;
-    newQueryPoint.reviewScore = req.body.reviewScore;
-    newQueryPoint.isPrime = req.body.isPrime;
+    for (var prop in req.body) {
+      newQueryPoint[prop] = req.body[prop];
+    }
+    console.log('req.body: \n');
+    console.dir(req.body);
+    console.log('\n \n newQueryPoint: \n');
+    console.dir(newQueryPoint);
+
 
     //save queryPoint to db
     newQueryPoint.save(function(err, data) {

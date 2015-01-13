@@ -89,8 +89,6 @@ module.exports = function(controllers) {
           newPoint[prop] = results[prop];
         }
       });
-      console.log('newPoint: \n');
-      console.dir(newPoint);
       $http.post('/api/newQueryPoint', newPoint)
       .success(function(data, status, headers, config) {
         console.log('success: ' + data);
