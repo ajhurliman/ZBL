@@ -55,13 +55,11 @@ module.exports = function(controllers) {
         console.dir(data);
         var results = data.results.collection1[0];
         for (var prop in results) {
-          console.log('prop: ' + prop)
           newPoint[prop] = results[prop];
-          console.log('newPoint: \n');
-          console.dir(newPoint);
         }
       });
-
+      console.log('newPoint: \n');
+      console.dir(newPoint);
       $http.post('/api/newQueryPoint', newPoint)
       .success(function(data, status, headers, config) {
         console.log('success: ' + data);
