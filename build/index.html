@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zapp Bug Logger</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body ng-app='zblApp'>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#/">Zapp Bug Logger</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#/addQuery">Add Queries</a></li>
+          <li><a href="#/manageQuery">Manage Queries</a></li>
+          <li><a href="#/manageAcct">Manage Account</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container" ng-view></div>
+
+  <script src="client-bundle.js"></script>
+
+</body>
+</html>
+
+<!-- NOTES
+spec req'ts and their api calls
+###############################
+
+sales rank (multiple categories) GetMatchingProductForId
+category                         GetMatchingProductForId
+qty in stock
+# reviews
+review score (of 5)
+prime? (y/n)
+time of request
+
+ -->
