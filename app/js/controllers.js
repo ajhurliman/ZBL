@@ -53,8 +53,9 @@ module.exports = function(controllers) {
       .success(function(data, status, headers, config) {
         console.log('return data');
         console.dir(data);
-        for (var prop in data) {
-          newPoint[prop] = data[prop];
+        var results = data.results.collection[0];
+        for (var prop in results) {
+          newPoint[prop] = results[prop];
         }
       });
 
@@ -73,8 +74,9 @@ module.exports = function(controllers) {
     //manage acct contents
   });
 
-  controllers.controller('PreviewController', ['$scope', 'ViewFactory', function($scope, ViewFactory) {
+  controllers.controller('PreviewController', ['$scope', '$route', 'ViewFactory', function($scope, $route, ViewFactory) {
     //manage preview
     $scope.queryPoints = ViewFactory.getQueryPoints();
+    $route.reload();
   }]);
 };
