@@ -25,13 +25,17 @@ module.exports = function(app, mongoose) {
   app.post('/api/newQueryPoint', function(req, res) {
     var newQueryPoint = new QueryPoint();
     async.series([
+      function writeReq() {
+        console.log(req.body);
+      },
       function assignProps() {
         for (var prop in req.body) {
           newQueryPoint[prop] = req.body[prop];
-          console.dir(newQueryPoint);
         }
       },
-
+      function writePoint() {
+        console.dir(newQueryPoint);
+      },
       function saveItem() {
         newQueryPoint.save(function(err, data) {
           if (err) return res.status(500).send('error saving query point to database');

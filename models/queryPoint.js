@@ -7,9 +7,10 @@ var queryPointSchema = mongoose.Schema({
   creation: Date,
   salesRank: Number,
   category: String,
-  qtyInStock: Number,
-  numReviews: Number,
-  reviewScore: Number,
+  qty: String,
+  numReviews: String,
+  title: String,
+  rating: String,
   isPrime: String
 });
 
