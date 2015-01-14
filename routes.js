@@ -24,6 +24,7 @@ module.exports = function(app, mongoose) {
   //post: a new QueryPoint is pushed into its respective parents' array
   app.post('/api/newQueryPoint', function(req, res) {
     var newQueryPoint = new QueryPoint();
+    var returnData;
     async.series([
       function writeReq() {
         console.log(req.body);
@@ -39,10 +40,11 @@ module.exports = function(app, mongoose) {
       function saveItem() {
         newQueryPoint.save(function(err, data) {
           if (err) return res.status(500).send('error saving query point to database');
-          return res.json(data);
+          returnData = data;
         });
       }
     ]);
+    return res.json(returnData);
   });
 
   //get a list of all query sets
