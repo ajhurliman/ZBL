@@ -30,8 +30,18 @@ module.exports = function(app, mongoose) {
         console.log(req.body);
       },
       function assignProps() {
-        for (var prop in req.body) {
-          newQueryPoint[prop] = req.body[prop];
+        traverse(req.body);
+        function traverse(jsonObj) {
+          if( typeof jsonObj == "object" ) {
+            $.each(jsonObj, function(k,v) {
+                // k is either an array index or object key
+                traverse(v);
+            });
+          }
+          else {
+            // jsonOb is a number or string
+            newQueryPoint[k] = v;
+          }
         }
       },
       function writePoint() {
