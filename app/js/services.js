@@ -1,4 +1,5 @@
 'use strict';
+var json2csv = require('json2csv');
 
 module.exports = function(services) {
   services.factory('ViewFactory', function() {
@@ -16,4 +17,15 @@ module.exports = function(services) {
       }
     }
   });
+
+  services.factory('FormatFactory', 'ngCsv', function(ngCsv) {
+    //take kimono json data, return flat object
+    return {
+      processObject: function(kimObj) {
+
+
+      }
+    }
+  });
+
 }
