@@ -67,32 +67,41 @@ module.exports = function(controllers) {
       });
     }
 
-    $scope.exportCsv = function(query) {
-      var fieldsArr = [];
-      for (var prop in formatObj) {
-        if(!objectsPushed) {
-          for (var i = 0; i < formatObj[prop].length; i++) {
-            if (typeof formatObj[prop][i].v != 'object') {
-              returnArr.push({'date': formatObj[prop][i].d, prop: formatObj[prop][i].v});
-            } else {
-              returnArr.push({'date': formatObj[prop][i].d, prop: formatObj[prop][i].v.text});
+    $scope.getCsvData = function(query) {
+      $http.get(query.apiUrl)
+      .success(function(kimObj) {
+        var formatObj = kimObj.results.undefined[0];
+        var zipObj = {}
+        var returnArr = [];
+        var objectsPushed = false;
+        $scope.fieldsArr = [];
+        for (var prop in formatObj) {
+          if(!objectsPushed) {
+            for (var i = 0; i < formatObj[prop].length; i++) {
+              if (typeof formatObj[prop][i].v != 'object') {
+                returnArr.push({'date': formatObj[prop][i].d, prop: formatObj[prop][i].v});
+              } else {
+                returnArr.push({'date': formatObj[prop][i].d, prop: formatObj[prop][i].v.text});
+              }
+            }
+          } else {
+            for (var i = 0; i < formatObj[prop].length; i++) {
+              if (typeof formatObj[prop][i].v != 'object') {
+                returnArr[i][prop] = formatObj[prop][i].v;
+              } else {
+                returnArr[i][prop] = formatObj[prop][i].v.text;
+              }
             }
           }
-        } else {
-          for (var i = 0; i < formatObj[prop].length; i++) {
-            if (typeof formatObj[prop][i].v != 'object') {
-              returnArr[i][prop] = formatObj[prop][i].v;
-            } else {
-              returnArr[i][prop] = formatObj[prop][i].v.text;
-            }
-          }
+          objectsPushed = true;
         }
-        objectsPushed = true;
-      }
-      for (var prop in returnArr) {
-        fieldsArr.push(prop);
-      }
+        for (var prop in returnArr) {
+          $scope.fieldsArr.push(prop);
+        }
+        $scope.exportArr = returnArr;
+      });
     }
+
 
 
     }]);

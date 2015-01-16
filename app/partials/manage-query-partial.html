@@ -12,7 +12,8 @@
       <td>{{query.name}}</td>
       <td>
         <button ng-click="deleteQuery(query._id)" class="btn-small btn-danger">Delete</button>
-        <button ng-csv="" class="btn-small btn-success">Export .csv</button>
+        <button ng-click="getCsvData(query)" class="btn-small btn-success">Export .csv</button>
+        <button ng-disabled="exportArr" ng-csv="exportArr" csv-header="fieldsArr" filename="export.csv" class="btn-small btn-success">Export .csv</button>
       </td>
     </tr>
   </tbody>
