@@ -2,9 +2,10 @@
 
 require('angular/angular');
 require('angular-route/angular-route');
+require('ng-csv');
 
 var services = angular.module('services', []);
-var controllers = angular.module('controllers', ['services']);
+var controllers = angular.module('controllers', ['services', 'ngCsv']);
 var directives = angular.module('directives', []);
 
 (function() {
