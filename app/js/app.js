@@ -5,7 +5,7 @@ require('angular-route/angular-route');
 require('ng-csv');
 
 var services = angular.module('services', []);
-var controllers = angular.module('controllers', ['services', 'ngCsv']);
+var controllers = angular.module('controllers', ['services', 'ngSanitize', 'ngCsv']);
 var directives = angular.module('directives', []);
 
 (function() {
