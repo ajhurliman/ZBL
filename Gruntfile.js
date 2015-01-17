@@ -1,30 +1,19 @@
 module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-simple-mocha');
 
   grunt.initConfig({
-    jshint: {
-      options: {
-        node: true,
-        jshintrc: '.jshintrc'
-      },
-      src: ['app/js/**/*.js']
-    },
-
     clean: {
       src: ['build/']
     },
 
     copy: {
       dev: {
-        cwd: 'app/',
         expand: true,
-        src: ['**/*.html', 'css/**/*.css', '../node_modules/angular-sanitize/**.*'],
+        src: ['app/**/*.html', 'app/css/**/*.css', 'node_modules/angular-sanitize/**/*', 'node_modules/ng-csv/**/*'],
         dest: 'build/'
       }
     },
@@ -68,25 +57,6 @@ module.exports = function(grunt) {
           'build/css/style.scss':'<%= project.scss %>'
         }
       }
-    },
-
-    watch: {
-      // sass: {
-      //   files: 'app/sass/**/*.scss',
-      //   tasks: ['sass:dev']
-      // },
-      app: {
-        files: [ 'app/js/**/*.js' ],
-        tasks: [ 'build' ]
-      },
-      html: {
-        files: [ 'app/**/*.html' ],
-        tasks: [ 'copy' ]
-      }
-      // test: {
-      //   files: [ '<%= project.alljs %>', 'test/front-end/**/*.js'],
-      //   tasks: [ 'build:dev', 'browserify:frontEndTest', 'karma:unit']
-      // }
     },
 
     simplemocha: {
