@@ -6,12 +6,12 @@ require("./../../bower_components/angular-route/angular-route");
 require('ng-csv');
 
 var services = angular.module('services', []);
-var controllers = angular.module('controllers', ['services', 'ngSanitize', 'ngCsv']);
+var controllers = angular.module('controllers', ['services', 'ngCsv']);
 var directives = angular.module('directives', []);
 
 (function() {
   var zblApp = angular.module('zblApp', [
-    'ngRoute', 'services', 'controllers', 'directives'
+    'ngRoute', 'services', 'controllers', 'directives', 'ngSanitize'
   ]);
 
   require('./services')(services);
