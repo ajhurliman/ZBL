@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-browserify');
-  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-simple-mocha');
@@ -25,7 +24,7 @@ module.exports = function(grunt) {
       dev: {
         cwd: 'app/',
         expand: true,
-        src: ['**/*.html', 'css/**/*.css', 'node_modules/angular-sanitize/angular-sanitize.js'],
+        src: ['**/*.html', 'css/**/*.css', '../node_modules/angular-sanitize/**.*'],
         dest: 'build/'
       }
     },
