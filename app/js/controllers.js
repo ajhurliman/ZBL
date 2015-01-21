@@ -19,11 +19,12 @@ module.exports = function(controllers) {
     };
   }]);
 
-  controllers.controller('ManageQueryController', ['$scope', '$http', '$route', '$location', 'ngCsv', function($scope, $http, $route, $location, ngCsv) {
+  controllers.controller('ManageQueryController', ['$scope', '$http', '$route', '$location', function($scope, $http, $route, $location) {
     $http.get('/api/querySets')
     .success(function(data, status, headers, config) {
       $scope.queries = data;
     });
+    $scope.exportArr = null;
 
     $scope.deleteQuery = function(id) {
       $http.delete('/api/querySets/' + id)
@@ -70,11 +71,11 @@ module.exports = function(controllers) {
     $scope.getCsvData = function(query) {
       $http.get(query.apiUrl)
       .success(function(kimObj) {
-        var formatObj = kimObj.results.undefined[0];
-        var zipObj = {}
+        var formatObj = kimObj.results.collection1[0];
         var returnArr = [];
         var objectsPushed = false;
         $scope.fieldsArr = [];
+
         for (var prop in formatObj) {
           if(!objectsPushed) {
             for (var i = 0; i < formatObj[prop].length; i++) {

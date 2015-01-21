@@ -2,7 +2,6 @@
 
 var QuerySet = require('./models/querySet.js');
 var QueryPoint = require('./models/queryPoint.js');
-var async = require('async');
 
 module.exports = function(app, mongoose) {
 
@@ -22,40 +21,40 @@ module.exports = function(app, mongoose) {
   //add new QueryPoint
   //pre: dataPoints sent in on req.body
   //post: a new QueryPoint is pushed into its respective parents' array
-  app.post('/api/newQueryPoint', function(req, res) {
-    var newQueryPoint = new QueryPoint();
-    var returnData;
-    async.series([
-      function writeReq() {
-        console.log(req.body);
-      },
-      function assignProps() {
-        traverse(req.body);
-        function traverse(jsonObj) {
-          if( typeof jsonObj == "object" ) {
-            $.each(jsonObj, function(k,v) {
-                // k is either an array index or object key
-                traverse(v);
-            });
-          }
-          else {
-            // jsonOb is a number or string
-            newQueryPoint[k] = v;
-          }
-        }
-      },
-      function writePoint() {
-        console.dir(newQueryPoint);
-      },
-      function saveItem() {
-        newQueryPoint.save(function(err, data) {
-          if (err) return res.status(500).send('error saving query point to database');
-          returnData = data;
-        });
-      }
-    ]);
-    return res.json(returnData);
-  });
+  // app.post('/api/newQueryPoint', function(req, res) {
+  //   var newQueryPoint = new QueryPoint();
+  //   var returnData;
+  //   async.series([
+  //     function writeReq() {
+  //       console.log(req.body);
+  //     },
+  //     function assignProps() {
+  //       traverse(req.body);
+  //       function traverse(jsonObj) {
+  //         if( typeof jsonObj == "object" ) {
+  //           $.each(jsonObj, function(k,v) {
+  //               // k is either an array index or object key
+  //               traverse(v);
+  //           });
+  //         }
+  //         else {
+  //           // jsonOb is a number or string
+  //           newQueryPoint[k] = v;
+  //         }
+  //       }
+  //     },
+  //     function writePoint() {
+  //       console.dir(newQueryPoint);
+  //     },
+  //     function saveItem() {
+  //       newQueryPoint.save(function(err, data) {
+  //         if (err) return res.status(500).send('error saving query point to database');
+  //         returnData = data;
+  //       });
+  //     }
+  //   ]);
+  //   return res.json(returnData);
+  // });
 
   //get a list of all query sets
   app.get('/api/querySets', function(req, res) {

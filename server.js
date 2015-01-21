@@ -9,7 +9,7 @@ var app = express();
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/zblDev');
 
 //configure server
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 80);
 app.use(bodyparser.json());
 
 //include the routes

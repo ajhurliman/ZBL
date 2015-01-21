@@ -12,9 +12,11 @@ module.exports = function(grunt) {
 
     copy: {
       dev: {
-        expand: true,
-        src: ['app/**/*.html', 'app/css/**/*.css', 'node_modules/angular-sanitize/**/*', 'node_modules/ng-csv/**/*'],
-        dest: 'build/'
+        files: [
+          {cwd: 'app/', expand: true, src: ['**/*.html', 'css/**/*.css'], dest: 'build/'},
+
+          {expand: true, src: ['node_modules/angular-sanitize/**/*', 'node_modules/ng-csv/build/**/*'], dest: 'build/'}
+        ]
       }
     },
 
