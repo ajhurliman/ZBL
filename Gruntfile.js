@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-mocha-selenium');
 
   grunt.initConfig({
     clean: {
@@ -62,11 +63,27 @@ module.exports = function(grunt) {
     },
 
     simplemocha: {
-      src: ['./test/api/*.js']
+      api: {
+        src: ['./test/api/*.js']
+      }
+    },
+
+    mochaSelenium: {
+      options: {
+        reporter: 'spec',
+        timeout:30e4,
+      },
+      chrome: {
+        src: ['./test/client/*.js'],
+        options: {
+          browserName: 'chrome'
+        }
+      }
     }
+
   });
 
-  grunt.registerTask('test:api', ['simplemocha']);
-  grunt.registerTask('test:client', ['browserify:test', 'karma:unit']);
+  grunt.registerTask('test:api', ['simplemocha:api']);
+  grunt.registerTask('test:client', ['mochaSelenium']);
   grunt.registerTask('build', ['clean', 'browserify:dev', 'copy:dev']);
 };

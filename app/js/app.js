@@ -14,6 +14,7 @@ var directives = angular.module('directives', []);
 
   require('./services')(services);
   require('./controllers')(controllers);
+  require('./directives')(directives);
 
   zblApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {redirectTo: '/addQuery'});

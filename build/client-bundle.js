@@ -15,6 +15,7 @@ var directives = angular.module('directives', []);
 
   require('./services')(services);
   require('./controllers')(controllers);
+  require('./directives')(directives);
 
   zblApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {redirectTo: '/addQuery'});
@@ -28,7 +29,7 @@ var directives = angular.module('directives', []);
 })();
 
 
-},{"./../../bower_components/angular-route/angular-route":4,"./../../bower_components/angular/angular":5,"./controllers":2,"./services":3}],2:[function(require,module,exports){
+},{"./../../bower_components/angular-route/angular-route":5,"./../../bower_components/angular/angular":6,"./controllers":2,"./directives":3,"./services":4}],2:[function(require,module,exports){
 'use strict';
 
 /* Controllers */
@@ -151,6 +152,18 @@ module.exports = function(controllers) {
 },{}],3:[function(require,module,exports){
 'use strict';
 
+module.exports = function(directives) {
+  directives.directive('manageQueryDirective', function() {
+    return {
+      restrict: 'EAC',
+      templateUrl: 'partials/manage-query-directive.html'
+    };
+  });
+};
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
 module.exports = function(services) {
   services.factory('ViewFactory', function() {
     var queryPoints = {
@@ -169,7 +182,7 @@ module.exports = function(services) {
   });
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.6
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -1166,7 +1179,7 @@ function ngViewFillContentFactory($compile, $controller, $route) {
 
 })(window, window.angular);
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 /**
  * @license AngularJS v1.3.6
  * (c) 2010-2014 Google, Inc. http://angularjs.org
@@ -27167,4 +27180,4 @@ var styleDirective = valueFn({
 })(window, document);
 
 !window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-},{}]},{},[1,2,3]);
+},{}]},{},[1,2,3,4]);

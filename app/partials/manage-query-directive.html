@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="query in queries">
+      <td><a href={{query.apiUrl}}>{{query.apiUrl}}</a></td>
+      <td>{{query.name}}</td>
+      <td>
+        <button ng-click="deleteQuery(query._id)" class="btn-small btn-danger">Delete</button>
+        <button ng-click="getCsvData(query)" class="btn-small btn-success">Load CSV Data</button>
+        <button ng-csv="exportArr" csv-header="fieldsArr" filename="export.csv" class="btn-small btn-success">Export .csv</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
