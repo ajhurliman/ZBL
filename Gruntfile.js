@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         files: [
           {cwd: 'app/', expand: true, src: ['**/*.html', 'css/**/*.css'], dest: 'build/'},
 
-          {expand: true, src: ['node_modules/angular-sanitize/**/*', 'node_modules/ng-csv/build/**/*'], dest: 'build/'}
+          {cwd: 'node_modules', expand: true, src: ['angular-sanitize/**/*', 'ng-csv/build/**/*'], dest: 'build/'}
         ]
       }
     },
